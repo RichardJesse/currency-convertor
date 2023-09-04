@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             .then(response => { return response.json()})
             .then(data => {
-                let currency = document.querySelector('#currency').value.toUpperCase();
-                console.log(currency);
+                var selectElement = document.getElementById('inputGroupSelect01');
+                var selectedOption = selectElement.options[selectElement.selectedIndex];
+                var currency = selectedOption.text.toUpperCase();
+                
+                
                 let rate = data.rates[currency];
                 let amount =amountToConvert.value;
                 let exchange = rate*amount;
