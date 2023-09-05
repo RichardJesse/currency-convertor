@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     let convertBtn = document.querySelector('.btn');
     let amountToConvert = document.querySelector('#amount');
+    
 
     convertBtn.addEventListener('click', function () {
         fetch('https://api.exchangerate-api.com/v4/latest/USD')
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(rate);
                 if (rate !== undefined) {
                     document.querySelector('#convertedRate').value = exchange;
-                    // document.querySelector('#result').innerHTML = `${amount} dollars is equal to ` + exchange + currency;
+                    
                 } else {
                     document.querySelector('#convertedRate').value = "invalid currency";
                 }
