@@ -16,13 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 let amount =amountToConvert.value;
                 let exchange = rate*amount;
 
+
                  
                 console.log(rate);
                 if (rate !== undefined) {
-                    document.querySelector('#result').innerHTML = `${amount} dollars is equal to ` + exchange + currency;
+                    document.querySelector('#convertedRate').value = exchange;
+                    // document.querySelector('#result').innerHTML = `${amount} dollars is equal to ` + exchange + currency;
                 } else {
-                    document.querySelector('#result').innerHTML = "invalid currency";
+                    document.querySelector('#convertedRate').value = "invalid currency";
                 }
+
 
                 return false;
 
