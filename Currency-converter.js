@@ -1,9 +1,10 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    let convertBtn = document.querySelector('.btn');
+    // let convertBtn = document.querySelector('.btn');
     let amountToConvert = document.querySelector('#amount');
     
 
-    convertBtn.addEventListener('click', function () {
+    amountToConvert.addEventListener('input', function (event) {
         fetch('https://api.exchangerate-api.com/v4/latest/USD')
 
             .then(response => { return response.json()})
@@ -36,3 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     })
 })
+// allow for realtime conversion of the currencies as in the time a user inputs a value it is converted
+
+
+
+// input.setCustomValidity("Select dfhbfhdfbhjn")
