@@ -1,0 +1,14 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px; /* or any other value */
+    margin-top: 10px;
+    margin-bottom: 200px;
+    
+}
