@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let exchange = rate*amount;
                
 
-                 
+                 console.log(data);
                 console.log(rate);
                 if (rate !== undefined) {
                     document.querySelector('#convertedRate').value = exchange;

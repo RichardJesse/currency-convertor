@@ -1,0 +1,14 @@
+{
+  "name": "currency-convertor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Currency-converter.js",
+  "scripts": {
+    "dev": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.4.1"
+  }
+}
