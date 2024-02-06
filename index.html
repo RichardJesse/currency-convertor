@@ -211,7 +211,8 @@
         const ctx = canvas.getContext('2d');
 
         const apiURL = 'https://api.exchangerate-api.com/v4/latest/USD';
-        const currencies = ['EUR', 'GBP', 'CAD', 'JPY', 'AUD', 'CHF', 'USD', 'AED', 'KES' , 'UAH'];
+        const africanCurrencies = ['DZD', 'AOA' , 'BWP', 'BIF', 'CVE', 'XAF']
+        const currencies = ['EUR', 'GBP', 'CAD', 'JPY', 'AUD', 'CHF', 'USD', 'AED', 'KES', 'UAH'];
 
         fetch(apiURL)
             .then(response => response.json())
@@ -219,6 +220,8 @@
 
                 const labels = currencies;
                 const datasets = currencies.map(currency => data.rates[currency]);
+                const africanDatasets = africanCurrencies.map(currency =>   console.log(data.rates[currency]))
+              
 
 
                 const chartData = {
@@ -230,23 +233,19 @@
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1,
                         tension: 0.5,
-                        fill: true
+                        fill: true,
+                    },
+                    {
+                        label: 'african rates',
+                        data: africanDatasets,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        tension: 0.5,
+                        fill: true,
+
                     }],
-                    options: {
-                        scales: {
-                            x: {
-                                grid: {
-                                    display: false
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    display: false
-                                }
-                            }
-                        }
-                    }
+
                 };
 
                 const chartConfig = {
@@ -255,9 +254,14 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true
-                            }
-                        }
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            },
+
+                        },
+                        responsive: true
                     }
                 };
 
