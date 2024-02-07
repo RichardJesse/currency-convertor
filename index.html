@@ -198,8 +198,8 @@
 
                 </select>
             </div>
-            <div style="position:relative; height:40vh; width:80vw">
-                <canvas id="myChart" width="10px"></canvas>
+            <div style="position:relative; height:40%; width:80%">
+                <canvas id="myChart" width="30px"></canvas>
             </div>
         </div>
     </div>
@@ -211,46 +211,97 @@
         const ctx = canvas.getContext('2d');
 
         const apiURL = 'https://api.exchangerate-api.com/v4/latest/USD';
-        const africanCurrencies = ['DZD', 'AOA' , 'BWP', 'BIF', 'CVE', 'XAF']
-        const currencies = ['EUR', 'GBP', 'CAD', 'JPY', 'AUD', 'CHF', 'USD', 'AED', 'KES', 'UAH'];
+
+
+        const africanCurrencies = [
+            'ZAR', 'NGN', 'EGP', 'DZD', 'MAD', 'KES', 'GHS', 'UGX', 'TZS', 'SDG', 'KES', 'ZMW', 'XOF', 'XAF', 'GMD', 'LSL', 'LRD', 'MUR', 'MZN', 'NAD', 'RWF', 'SCR', 'SOS', 'SZL', 'TND', 'UGX', 'ZMW', 'ZWL', 'BIF', 'CVE', 'DJF', 'GHS', 'GNF', 'KES', 'KMF', 'LRD', 'MGA', 'MRO', 'MUR', 'MWK', 'NAD', 'NGN', 'RWF', 'SCR', 'SHP', 'SLL', 'SOS', 'STD', 'SZL', 'TND', 'UGX', 'ZMW'
+        ];
+
+        const europeanCurrencies = [
+            'EUR', 'GBP', 'CHF', 'SEK', 'NOK', 'DKK', 'PLN', 'HUF', 'CZK', 'RUB', 'TRY', 'UAH', 'ISK', 'HRK', 'RON', 'BGN', 'XDR'
+        ];
+
+        const americanCurrencies = [
+            'USD', 'CAD', 'MXN', 'BRL', 'ARS', 'COP', 'CLP', 'PEN', 'BOB', 'UYU', 'GTQ', 'CRC', 'HNL', 'NIO', 'PYG', 'DOP', 'TTD', 'BSD', 'BZD', 'HTG', 'JMD', 'KYD', 'SVC', 'ANG', 'XCD', 'AWG', 'SRD', 'GYD', 'PAB', 'FJD', 'BBD', 'XOF', 'BMD', 'BWP', 'BND', 'CUP', 'JOD', 'KWD', 'OMR', 'QAR', 'SAR', 'AED', 'BHD', 'IQD', 'ILS', 'YER'
+        ];
+
+        const asianCurrencies = [
+            'JPY', 'CNY', 'KRW', 'INR', 'IDR', 'SGD', 'THB', 'MYR', 'PHP', 'VND', 'PKR', 'BDT', 'TWD', 'KZT', 'LKR', 'MMK', 'KHR', 'NPR', 'MNT', 'IRR', 'SAR', 'AED', 'KWD', 'OMR', 'QAR', 'KGS', 'UZS', 'TJS', 'AFN', 'TMT', 'GEL', 'AZN', 'TRY', 'PKR', 'NPR', 'BND', 'MVR', 'LAK', 'MOP', 'PHP', 'KHR', 'VND', 'IDR', 'MMK', 'THB', 'SGD', 'KRW', 'JPY', 'CNY', 'HKD', 'TWD'
+        ];
+
+        const australianCurrencies = [
+            'AUD', 'NZD', 'PGK', 'FJD',  'VUV', 'KID', 'BTN'
+        ];
+
+
+
 
         fetch(apiURL)
             .then(response => response.json())
             .then(data => {
-
-                const labels = currencies;
-                const datasets = currencies.map(currency => data.rates[currency]);
-                const africanDatasets = africanCurrencies.map(currency =>   console.log(data.rates[currency]))
-              
-
-
-                const chartData = {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Exchange rate',
-                        data: datasets,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+               
+                const labels = [
+                    ...africanCurrencies,
+                    ...europeanCurrencies,
+                    ...asianCurrencies,
+                    ...americanCurrencies,
+                    ...australianCurrencies
+                ];
+                const datasets = [
+                    {
+                        label: 'African Rates',
+                        data: africanCurrencies.map(currency => data.rates[currency]),
+                        backgroundColor: 'rgba(144, 238, 144, 1)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1,
                         tension: 0.5,
                         fill: true,
                     },
+
                     {
-                        label: 'african rates',
-                        data: africanDatasets,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        label: 'European Rates',
+                        data: europeanCurrencies.map(currency => data.rates[currency]),
+                        backgroundColor: '',
+                        borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
                         tension: 0.5,
                         fill: true,
-
-                    }],
-
-                };
+                    },
+                    {
+                        label: 'Asian Rates',
+                        data: asianCurrencies.map(currency => data.rates[currency]),
+                        backgroundColor: 'rgba(200, 150, 255, 1)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        tension: 0.5,
+                        fill: true,
+                    },
+                    {
+                        label: 'American Rates',
+                        data: americanCurrencies.map(currency => data.rates[currency]),
+                        backgroundColor: 'rgba(255, 150, 150, 1)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        tension: 0.5,
+                        fill: true,
+                    },
+                    {
+                        label: 'Australian Rates',
+                        data: australianCurrencies.map(currency => data.rates[currency]),
+                        backgroundColor: 'rgba(210, 180, 140, 1)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        tension: 0.5,
+                        fill: true,
+                    }
+                ];
 
                 const chartConfig = {
                     type: 'line',
-                    data: chartData,
+                    data: {
+                        labels: labels,
+                        datasets: datasets,
+                    },
                     options: {
                         scales: {
                             y: {
@@ -259,10 +310,9 @@
                                     display: false
                                 }
                             },
-
                         },
                         responsive: true
-                    }
+                    },
                 };
 
                 const myChart = new Chart(ctx, chartConfig);
@@ -270,8 +320,8 @@
             .catch(error => {
                 console.error(error);
             });
-
     </script>
+
 
 
 
